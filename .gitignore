@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+env/
+
+# HuggingFace cache
+.cache/
+huggingface/
+
+# Model directory
+hf_tmp_blip_vqa/
+
+# logs
+logs/
+
+# outputs
+outputs/
+
+# OS
+.DS_Store
+Thumbs.db

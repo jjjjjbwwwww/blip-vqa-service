@@ -1,0 +1,49 @@
+{
+  "image": "images/sample.jpg",
+  "model_dir": "E:/python/test6/hf_tmp_blip_vqa",
+  "device": "cuda",
+  "offline": true,
+  "use_fast_processor": true,
+  "qa": [
+    {
+      "q": "What is in the image?",
+      "a": "bedroom"
+    },
+    {
+      "q": "What room is this?",
+      "a": "bedroom"
+    },
+    {
+      "q": "What is the main object?",
+      "a": "bed"
+    },
+    {
+      "q": "Is there a bed?",
+      "a": "yes"
+    },
+    {
+      "q": "What color is the bed?",
+      "a": "blue"
+    },
+    {
+      "q": "Is there a window?",
+      "a": "yes"
+    },
+    {
+      "q": "Is this indoor or outdoor?",
+      "a": "indoor"
+    },
+    {
+      "q": "How many beds are visible?",
+      "a": "1"
+    },
+    {
+      "q": "What is on the bed?",
+      "a": "comforter"
+    },
+    {
+      "q": "Describe the scene in one phrase.",
+      "a": "tidy"
+    }
+  ]
+}

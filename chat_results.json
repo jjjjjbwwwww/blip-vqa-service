@@ -1,0 +1,21 @@
+{
+  "device": "cuda",
+  "dialogue": [
+    {
+      "q": "What is in the image?",
+      "a": "bedroom"
+    },
+    {
+      "q": "What room is this?",
+      "a": "bedroom"
+    },
+    {
+      "q": "Is there a bed?",
+      "a": "bedroom"
+    },
+    {
+      "q": "Is there a window?",
+      "a": "window"
+    }
+  ]
+}
