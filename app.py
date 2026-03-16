@@ -18,7 +18,7 @@ from transformers import AutoProcessor, BlipForQuestionAnswering
 PROJECT_DIR = Path(__file__).parent
 MODEL_DIR = PROJECT_DIR / "hf_tmp_blip_vqa"
 
-# Hard offline: no network
+
 os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
@@ -46,7 +46,7 @@ def load_model_once(use_fast: bool = True) -> None:
     processor = AutoProcessor.from_pretrained(
         str(MODEL_DIR),
         local_files_only=True,
-        use_fast=use_fast,  # will show 'fast processor' notice sometimes; safe to ignore
+        use_fast=use_fast,  
     )
     model = BlipForQuestionAnswering.from_pretrained(
         str(MODEL_DIR),
@@ -135,7 +135,7 @@ async def vqa(
 @app.post("/vqa_batch")
 async def vqa_batch(
     image: UploadFile = File(...),
-    # Provide ONE of the following:
+    
     questions_json: Optional[str] = Form(None),  # e.g. ["Q1","Q2"]
     questions_text: Optional[str] = Form(None),  # multi-line, one question per line
     max_new_tokens: int = Form(20),
