@@ -23,7 +23,7 @@ def build_prompt(history, new_question, style="qa"):
         return new_question.strip()
 
     if style == "chat":
-        # 更像对话，但 BLIP 有时更喜欢 QA 格式
+      
         lines = []
         for turn in history:
             lines.append(f"User: {turn['q']}")
