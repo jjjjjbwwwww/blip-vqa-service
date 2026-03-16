@@ -44,7 +44,7 @@ def load_image_from_upload(file: UploadFile) -> Image.Image:
 
 def parse_questions(questions_json: str, questions_text: str) -> List[str]:
     """
-    优先解析 questions_json（必须是 JSON array），否则解析 questions_text（按行分割）。
+    优先解析 questions_json，否则解析 questions_text
     """
     if questions_json and questions_json.strip():
         try:
@@ -67,7 +67,7 @@ def build_prompt(history: List[dict], new_question: str, style: str = "qa") -> s
     """
     history: [{"q":..., "a":...}, ...]
     style:
-      - qa  : Question/Answer 格式（推荐给 BLIP）
+      - qa  : Question/Answer 
       - chat: User/Assistant 对话格式（可选）
     """
     new_question = new_question.strip()
@@ -104,7 +104,7 @@ def answer_one(model, processor, image: Image.Image, prompt: str, device: str, m
 DEVICE = pick_device()
 MODEL_DIR = Path(DEFAULT_MODEL_DIR).resolve()
 
-# 默认：离线加载（不会再下载）
+# 默认：离线加载
 LOCAL_FILES_ONLY = True
 
 processor = None
@@ -113,8 +113,6 @@ model = None
 
 def ensure_model_loaded(model_dir: Optional[str] = None, offline: Optional[bool] = None):
     """
-    支持在请求中覆盖 model_dir/offline。
-    - model_dir: 本地目录（推荐）
     - offline: True => local_files_only=True；False => 允许联网下载
     """
     global processor, model, MODEL_DIR, LOCAL_FILES_ONLY
@@ -152,7 +150,7 @@ def vqa(
     image: UploadFile = File(...),
     question: str = Form(...),
 
-    # 可选：覆盖本地模型目录 / 是否离线
+    # 可选：是否离线
     model_dir: Optional[str] = Form(None),
     offline: Optional[bool] = Form(None),
 
@@ -187,7 +185,7 @@ def vqa_batch(
     max_new_tokens: int = Form(DEFAULT_MAX_NEW_TOKENS),
 ):
     """
-    单张图片 + 多问题（Batch,不带上下文）
+    单张图片 + 多问题
     """
     try:
         ensure_model_loaded(model_dir=model_dir, offline=offline)
@@ -224,8 +222,7 @@ def vqa_chat(
     max_new_tokens: int = Form(DEFAULT_MAX_NEW_TOKENS),
 ):
     """
-    单张图片 + 多轮对话（同一张图的多轮问答）
-    - 会把前面的 Q/A 拼接进 prompt，让模型“像在对话”
+    单张图片 + 多轮对话
     """
     try:
         ensure_model_loaded(model_dir=model_dir, offline=offline)
