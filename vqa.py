@@ -30,7 +30,7 @@ def load_model_and_processor(model_dir: str, device: str, local_only: bool = Tru
         )
 
     # 让 transformers 离线：避免任何联网请求
-    # 这两个环境变量可选，但非常保险
+   
     if local_only:
         os.environ["TRANSFORMERS_OFFLINE"] = "1"
         os.environ["HF_HUB_OFFLINE"] = "1"
@@ -67,7 +67,7 @@ def parse_args():
     p.add_argument("--image", type=str, required=True, help="Image path, e.g. images/sample.jpg")
     p.add_argument("--question", type=str, required=True, help='Question text, e.g. "What is in the image?"')
 
-    # 你的本地下载目录（你刚刚成功下载的）
+
     p.add_argument(
         "--local_dir",
         type=str,
@@ -75,7 +75,7 @@ def parse_args():
         help="Local model directory (downloaded snapshot). Default: ./hf_tmp_blip_vqa",
     )
 
-    # 默认离线，确保不再下载
+    # 默认离线
     p.add_argument(
         "--online",
         type=int,
